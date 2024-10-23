@@ -47,26 +47,34 @@ class TowerSelection:                            # class specific for the select
     def __init__(self):
         self.selected_tower = None                        # set the tower used as none initially
         self.money = 250                                # set money to the starting number
+    
+    def select_tower(self,pos):
+        self.pos = 
+    
     def selected_tower(self,tower_type):
         if tower_type == "Tower1":
             self.selected_tower = self.type1                   # if the tower type selected is the first tower then the seleted tower is set as the first tower
         elif tower_type == "Tower2":
             self.selected_tower = self.type2                      # else use the second tower
+    
     def place_tower(self):
         if self.selected_tower == self.type1:                        # if the first tower will be set as type 1
             if self.money >= self.type1_cost:
                 if self.game_map.pos_valid(pos) == True:                  # it will use the validation function to check the position that is selected by the user
                     self.game_map.add_tower(selected_tower,pos)
-                    self.money -= self.type1_cost
+                    self.money -= self.type1_cost                      #  it will then take the cost away from the money owned
                     self.selected_tower.draw()
-                    selected_tower = None
-        elif self.selected_tower == self.type2:
-            if self.money >= self.type2_cost:
+                    selected_tower = None                            # it will reset the selected tower back to none
+        elif self.selected_tower == self.type2:                           
+            if self.money >= self.type2_cost:                           
                 if self.game_map.pos_valid(pos) == True:
-                    self.game_map.add_tower(selected_tower,pos)
+                    self.game_map.add_tower(selected_tower,pos)             # this code is repeated for the second type of tower
                     self.money -= self.type2_cost
                     self.selected_tower.draw()
                     selected_tower = None
+    
+
+                    
 class Enemy:
     def __init__(self,image):
         self.image = image.load("Tower Defense Assets\PNG\Retina\towerDefense_tile248.png")
@@ -75,9 +83,6 @@ class Enemy:
         self.speed = 6
         self.pos = []
         self.round = round
-        
-        
-        
 
                     
 
@@ -96,8 +101,10 @@ class MainLoop:
                 if e.type == QUIT:
                     self.exit_game = True
                 elif e.type == MOUSEBUTTONDOWN:
+                    mouse_clicked = mouse.get_pressed()[0]
                     if mouse_clicked == True:
-                        start_selection.select_tower()
+                        select = TowerSelection()
+                        select.select_tower()
                 
                 self.game_screen.blit(self.map,(0,0))
                 display.flip()
