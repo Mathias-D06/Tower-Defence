@@ -9,9 +9,9 @@ class Tower:                              # creates a tower class
         self.damage = 20
         self.pos = pos
         self.target = None     # initialy the targeted enemy is set to none as it will be changed when an enemy is near
-        self.type1 = image.load("Tower Defense Assets\PNG\Retina\towerDefense_tile249.png")        # the sprites for the 2 different towers must be loaded as they are pre made images from an asset pack 
-        self.type2 = image.load("Tower Defense Assets\PNG\Retina\towerDefense_tile250.png")
-        self.projectile = image.load("Tower Defense Assets\PNG\Retina\towerDefense_tile251.png")      # the same for the projectile
+        self.type1 = image.load("towerDefense_tile249.png")        # the sprites for the 2 different towers must be loaded as they are pre made images from an asset pack 
+        self.type2 = image.load("towerDefense_tile250.png")
+        self.projectile = image.load("towerDefense_tile251.png")      # the same for the projectile
         self.type1_cost = 100
         self.type2_cost = 150
     
@@ -49,7 +49,7 @@ class TowerSelection:                            # class specific for the select
         self.money = 250                                # set money to the starting number
     
     def select_tower(self,pos):
-        self.pos = 
+        self.x, self.y = mouse.get_pos()
     
     def selected_tower(self,tower_type):
         if tower_type == "Tower1":
@@ -77,7 +77,7 @@ class TowerSelection:                            # class specific for the select
                     
 class Enemy:
     def __init__(self,image):
-        self.image = image.load("Tower Defense Assets\PNG\Retina\towerDefense_tile248.png")
+        self.image = image.load("towerDefense_tile248.png")
         self.health = 40
         self.number = 4
         self.speed = 6
@@ -94,7 +94,7 @@ class MainLoop:
     def __init__(self):
         self.exit_game = False
         self.game_screen = display.set_mode((1288,728))
-        self.map = image.load("Protoype 1\map.png")
+        self.map = image.load("map.png")
     def gamescreen(self):
         while not self.exit_game:
             for e in event.get():
