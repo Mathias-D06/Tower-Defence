@@ -22,7 +22,7 @@ class Tower:                              # creates a tower class
         enemy_centre_y = self.enemy.y + enemy.image.get_width()//2
         distance = math.sqrt((centre_x - enemy_centre_x)**2 + (centre_y - enemy_centre_y)**2)       # using triganometry to calucate the distance between the enemy and tower
         return distance <= self.range
-    def attack (self,enemy,target,inRange,newTarget):                       # using the inRange() fucntion attack the nearest tower 
+    def attack(self,enemy,inRange):                       # using the inRange() fucntion attack the nearest tower 
         self.willhit = inRange(self,target,enemy[target])
         if self.target and self.willhit:                                 # if an enemy has been found and it's in range then deal damage
             self.target.take_damage(self.damage)
@@ -77,7 +77,7 @@ class TowerSelection:                            # class specific for the select
                     
 class Enemy:
     def __init__(self,image):
-        self.image = image.load("towerDefense_tile248.png")
+        self.image = image.load("Tower-Defence\towerDefense_tile248.png")
         self.health = 40
         self.number = 4
         self.speed = 6
